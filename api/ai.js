@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   const found = NAMES.find(function (n) {
     return process.env[n];
   });
-  const raw = found ? process.env[GROQ_API_KEY] : null;
+  const raw = found ? process.env[found] : null;
 
   if (!raw) {
     console.error("키 없음. 찾아본 이름:", NAMES.join(", "));
