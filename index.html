@@ -3,21 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>홈</title>
-  <!-- 경로는 항상 / 로 시작합니다. 폴더가 깊어져도 안 깨집니다. -->
+  <title>Stock Arena | Market game</title>
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 
   <header id="nav"></header>
 
-  <main>
-  REAL MARKET, GAME EXPERIENCE
-
-STOCK ARENA
-실제 주식시장의 움직임을 게임처럼 관찰하고, 가상자금으로 투자 경쟁에 참여해 보세요.
-
-Stock Arena는 실제 시장 데이터를 활용한 모의투자 및 교육용 서비스입니다.
+  <main class="arena-home">
+    <section class="home-hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> MARKET WATCH / 09:41:28</div>
+        <h1>Stock<br><em>Arena</em></h1>
+        <p>실제 시장의 움직임을 게임처럼 읽고,<br>가상자금으로 다음 수를 먼저 골라보세요.</p>
+        <div class="hero-actions">
+          <a class="btn primary-button" href="/pages/market.html">시장 둘러보기 <span>↗</span></a>
+          <button class="text-button" id="simulateButton" type="button">시장 변동 시뮬레이션 <span>→</span></button>
+        </div>
+      </div>
+      <div class="hero-stats" aria-label="시장 요약">
+        <div><span>오늘의 지수</span><strong>KOSPI <b>2,671.82</b></strong><small class="up">+1.24%</small></div>
+        <div><span>거래대금</span><strong>9.8 <small>조원</small></strong><small>▲ 18.2%</small></div>
+        <div><span>참여 플레이어</span><strong>1,284 <small>명</small></strong><small class="yellow-text">LIVE</small></div>
+      </div>
+    </section>
+    <section class="ticker-strip" aria-label="주요 종목">
+      <div class="section-label">MARKET PULSE <span>●</span></div>
+      <div class="ticker-list">
+        <div class="ticker"><span>삼성전자</span><b>72,400</b><i class="up">+2.12%</i></div>
+        <div class="ticker"><span>SK하이닉스</span><b>188,300</b><i class="up">+4.55%</i></div>
+        <div class="ticker"><span>현대차</span><b>241,500</b><i class="down">-0.82%</i></div>
+        <div class="ticker"><span>카카오</span><b>44,850</b><i class="up">+1.36%</i></div>
+      </div>
+    </section>
+    <section class="dashboard-grid">
+      <div class="panel ranking-panel">
+        <div class="panel-heading"><div><span class="kicker">TODAY'S MOVERS</span><h2>오늘의 상승 랭킹</h2></div><a href="/pages/market.html">전체 보기 ↗</a></div>
+        <div class="ranking-row"><span class="rank-number">01</span><span class="company-mark orange">H</span><div class="company-name"><b>한미반도체</b><small>042700 · KOSDAQ</small></div><strong>+12.48%</strong><span class="mini-chart rise">╱╲╱╱</span></div>
+        <div class="ranking-row"><span class="rank-number">02</span><span class="company-mark blue">S</span><div class="company-name"><b>SK하이닉스</b><small>000660 · KOSPI</small></div><strong>+4.55%</strong><span class="mini-chart rise">╱╱╲╱</span></div>
+        <div class="ranking-row"><span class="rank-number">03</span><span class="company-mark green">L</span><div class="company-name"><b>LG에너지솔루션</b><small>373220 · KOSPI</small></div><strong>+3.90%</strong><span class="mini-chart rise">╱╱╱╲</span></div>
+      </div>
+      <div class="panel arena-panel">
+        <div class="panel-heading"><div><span class="kicker">LIVE BATTLEFIELD</span><h2>지금 아레나</h2></div><span class="status-pill"><span class="live-dot"></span> LIVE</span></div>
+        <div class="arena-stage" id="arenaStage">
+          <div class="tower tower-left"><span class="tower-label">BULLS</span><i class="block block-yellow"></i><i class="block block-orange"></i><i class="block block-red"></i><i class="block block-blue"></i></div>
+          <div class="versus">VS</div>
+          <div class="tower tower-right"><span class="tower-label">BEARS</span><i class="block block-blue"></i><i class="block block-purple"></i><i class="block block-yellow"></i></div>
+          <div class="pixel-player player-one"><span class="head"></span><span class="body"></span></div>
+          <div class="pixel-player player-two"><span class="head"></span><span class="body"></span></div>
+        </div>
+        <div class="arena-footer"><span><b id="battleMessage">상승세가 타워를 쌓는 중</b><small>삼성전자 전투력 +2.1%</small></span><button class="icon-button" id="dropBomb" type="button" aria-label="변동 이벤트 발생">✦</button></div>
+      </div>
+      <div class="panel low-panel">
+        <div class="panel-heading"><div><span class="kicker">WATCH OUT</span><h2>오늘의 하락 종목</h2></div><a href="/pages/market.html">더 보기</a></div>
+        <div class="low-item"><b>에코프로비엠</b><span>247,000</span><strong class="down">-5.18%</strong></div>
+        <div class="low-item"><b>포스코퓨처엠</b><span>270,500</span><strong class="down">-3.44%</strong></div>
+        <div class="low-item"><b>카카오게임즈</b><span>19,820</span><strong class="down">-2.91%</strong></div>
+      </div>
+    </section>
+    <section class="trade-bar">
+      <div><span class="kicker">QUICK TRADE</span><h2>이번 라운드, 어디에 걸어볼까요?</h2></div>
+      <div class="trade-stock"><span class="company-mark blue">S</span><div><b>SK하이닉스</b><small>188,300원 · +4.55%</small></div></div>
+      <label class="quantity-label">수량 <input id="quantity" type="number" min="1" value="1"></label>
+      <button class="trade-button buy-button" id="buyButton" type="button">매수 <span>↗</span></button>
+      <button class="trade-button sell-button" id="sellButton" type="button">매도 <span>↘</span></button>
+      <span class="trade-note" id="tradeNote">모의투자 지갑 10,000,000원</span>
+    </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

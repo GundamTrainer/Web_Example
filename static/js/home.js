@@ -1,17 +1,29 @@
-// 홈페이지 전용 코드
-// common.js 가 로그인 상태를 확인한 뒤 이 함수를 자동으로 불러줍니다.
-
 function onAuthReady() {
-  const loginBox = document.getElementById("loginBox");
-  const welcomeBox = document.getElementById("welcomeBox");
+  const stage = document.getElementById("arenaStage");
+  const message = document.getElementById("battleMessage");
+  const note = document.getElementById("tradeNote");
+  if (!stage) return;
 
-  if (currentUser) {
-    loginBox.hidden = true;
-    welcomeBox.hidden = false;
-    document.getElementById("hello").textContent =
-      currentUser.email.split("@")[0] + "님, 안녕하세요!";
-  } else {
-    loginBox.hidden = false;
-    welcomeBox.hidden = true;
-  }
+  document.getElementById("simulateButton").addEventListener("click", function () {
+    stage.classList.toggle("event-up");
+    message.textContent = stage.classList.contains("event-up")
+      ? "매수세가 타워를 한 칸 올렸습니다"
+      : "하락 신호! 상대 타워가 공격 중";
+  });
+
+  document.getElementById("dropBomb").addEventListener("click", function () {
+    stage.classList.remove("event-up");
+    stage.classList.add("event-bomb");
+    message.textContent = "변동성 이벤트 발생, 방어선을 확인하세요";
+    window.setTimeout(function () { stage.classList.remove("event-bomb"); }, 700);
+  });
+
+  ["buyButton", "sellButton"].forEach(function (id) {
+    document.getElementById(id).addEventListener("click", function () {
+      const quantity = Number(document.getElementById("quantity").value) || 1;
+      const action = id === "buyButton" ? "매수" : "매도";
+      note.textContent = quantity + "주 " + action + " 주문을 준비했습니다 (모의투자)";
+      note.classList.add("confirmed");
+    });
+  });
 }
