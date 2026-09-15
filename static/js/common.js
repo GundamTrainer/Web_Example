@@ -23,9 +23,13 @@ let currentUser = null;
 // ---------------------------------------------------------
 
 const MENU = [
-  { name: "홈", url: "/index.html" },
-  { name: "게시판", url: "/pages/board.html" },
-  { name: "내 정보", url: "/pages/mypage.html" },
+{ name: "홈", url: "/index.html" },
+{ name: "오늘의 시장", url: "/pages/market.html" },
+{ name: "실시간 아레나", url: "/pages/arena.html" },
+{ name: "모의투자", url: "/pages/portfolio.html" },
+{ name: "수익률 랭킹", url: "/pages/ranking.html" },
+{ name: "종목 토론", url: "/pages/board.html" },
+{ name: "내 정보", url: "/pages/mypage.html" },
 ];
 
 function renderNav() {

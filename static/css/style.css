@@ -4,11 +4,20 @@
    ========================================================= */
 
 :root {
-  --main: #6366f1;      /* 이 색만 바꿔도 분위기가 달라집니다 */
-  --text: #18181b;
-  --gray: #71717a;
-  --line: #e4e4e7;
-  --bg:   #fafafa;
+--main: #18181b;
+--green: #2dbb70;
+--green-light: #dff8e9;
+--red: #f05d5e;
+--red-light: #ffe5e5;
+--yellow: #f7c948;
+--blue: #4f8cff;
+--text: #18181b;
+--gray: #71717a;
+--line: #27272a;
+--soft-line: #e4e4e7;
+--bg: #f5f4ed;
+--panel: #ffffff;
+--pixel-shadow: 4px 4px 0 #18181b;
 }
 
 * { box-sizing: border-box; }
@@ -18,7 +27,11 @@ body {
   margin: 0;
   padding: 0 0 80px;
   color: var(--text);
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(24, 24, 27, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 24, 27, 0.04) 1px, transparent 1px),
+    var(--bg);
+  background-size: 24px 24px;
 }
 
 /* ---------- 위쪽 메뉴 (common.js 가 채웁니다) ---------- */
@@ -50,9 +63,8 @@ header .me { font-size: 13px; color: var(--gray); }
 /* ---------- 본문 ---------- */
 
 main {
-  max-width: 640px;
+  width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 0 16px;
 }
 
 h1 { font-size: 22px; margin: 0 0 20px; }
@@ -61,11 +73,12 @@ h2 { font-size: 17px; margin: 28px 0 12px; }
 .logo { width: 48px; height: 48px; }
 
 .card {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 16px;
+  background: var(--panel);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
   margin-bottom: 20px;
+  box-shadow: var(--pixel-shadow);
 }
 
 .card p { margin: 0 0 10px; font-size: 15px; }
@@ -84,17 +97,30 @@ textarea { height: 80px; resize: vertical; }
 
 .row { display: flex; gap: 8px; }
 
-button, .btn {
+button,
+.btn {
   display: inline-block;
-  padding: 9px 16px;
+  padding: 10px 16px;
   font-size: 14px;
+  font-weight: 700;
   font-family: inherit;
-  border: 1px solid #d4d4d8;
+  border: 2px solid var(--line);
   border-radius: 6px;
   background: #fff;
   color: var(--text);
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 3px 3px 0 var(--line);
+}
+
+button:hover,
+.btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--line);
+}
+
+.primary-button {
+  background: var(--yellow);
 }
 
 button:hover, .btn:hover { background: #f4f4f5; }
