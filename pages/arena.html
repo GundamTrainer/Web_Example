@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아레나 | Stock Arena</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+
+  <main class="arena-page">
+    <section class="arena-shell" aria-label="Stock Arena market visualization">
+      <div class="arena-top">
+        <div class="arena-title-wrap">
+          <span class="arena-kicker">ARENA</span>
+          <h1 id="arenaStockName">삼성전자</h1>
+        </div>
+        <div class="arena-price-wrap">
+          <strong id="arenaCurrentPrice">-</strong>
+          <span id="arenaChangeRate" class="change-tag">-</span>
+        </div>
+      </div>
+
+      <div class="arena-panel">
+        <div class="arena-status-row">
+          <div>
+            <span class="arena-label">데이터 기준</span>
+            <strong id="arenaUpdatedAt">기다리는 중</strong>
+          </div>
+          <button id="refreshArena" class="btn arena-refresh" type="button">새로고침</button>
+        </div>
+
+        <div id="arenaError" class="arena-error" role="alert" hidden>
+          데이터를 불러오지 못해 캐릭터를 정지했습니다.
+        </div>
+
+        <canvas id="arenaCanvas" width="960" height="420" aria-label="Stock Arena canvas"></canvas>
+      </div>
+
+      <div class="arena-metrics">
+        <article class="arena-card">
+          <span class="arena-label">시가</span>
+          <strong id="arenaOpen">-</strong>
+        </article>
+        <article class="arena-card">
+          <span class="arena-label">고가</span>
+          <strong id="arenaHigh">-</strong>
+        </article>
+        <article class="arena-card">
+          <span class="arena-label">저가</span>
+          <strong id="arenaLow">-</strong>
+        </article>
+        <article class="arena-card">
+          <span class="arena-label">종가</span>
+          <strong id="arenaClose">-</strong>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/arena.js"></script>
+</body>
+</html>
