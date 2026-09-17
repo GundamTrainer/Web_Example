@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘의 시장 | Stock Arena</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header id="nav"></header>
+
+  <main class="market-page">
+    <section class="page-heading">
+      <div>
+        <span class="kicker">MARKET CONTROL ROOM</span>
+        <h1>오늘의 시장</h1>
+        <p>한국 주식시장 데이터를 한 화면에서 확인합니다.</p>
+      </div>
+      <div class="market-clock"><span class="status-dot"></span><b id="marketStatus">데이터 확인 중</b><small id="marketUpdated">기준 시각 확인 중</small></div>
+    </section>
+
+    <section class="market-summary-grid" aria-label="시장 요약">
+      <article class="market-summary-card"><span>KOSPI</span><strong id="kospiValue">-</strong><small id="kospiChange">데이터 연결 대기</small></article>
+      <article class="market-summary-card"><span>KOSDAQ</span><strong id="kosdaqValue">-</strong><small id="kosdaqChange">데이터 연결 대기</small></article>
+      <article class="market-summary-card summary-note"><span>DATA SOURCE</span><strong>Data.go.kr 공공 API</strong><small>공공데이터 기반 시장 정보</small></article>
+    </section>
+
+    <section class="market-toolbar" aria-label="종목 검색">
+      <label for="stockSearch">종목 검색</label>
+      <input id="stockSearch" type="search" placeholder="종목명 또는 종목코드" autocomplete="off">
+      <span id="searchStatus">API 연결 후 종목을 검색할 수 있습니다.</span>
+    </section>
+
+    <section class="ranking-grid">
+      <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">TOP MOVERS</span><h2>상승률 TOP 10</h2></div><span class="data-badge">RISE</span></div><div id="riseRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
+      <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">TOP MOVERS</span><h2>하락률 TOP 10</h2></div><span class="data-badge data-badge-down">FALL</span></div><div id="fallRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
+      <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">ACTIVITY</span><h2>거래량 TOP 10</h2></div><span class="data-badge data-badge-blue">VOLUME</span></div><div id="volumeRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
+      <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">ACTIVITY</span><h2>거래대금 TOP 10</h2></div><span class="data-badge data-badge-blue">VALUE</span></div><div id="valueRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
+    </section>
+    <p class="data-disclaimer">표시할 실제 시장 데이터가 없으면 임의의 종목명과 가격을 표시하지 않습니다. 데이터는 공공데이터포털 API 기준으로 제공됩니다.</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/static/js/common.js"></script>
+  <script src="/static/js/market.js"></script>
+</body>
+</html>

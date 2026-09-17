@@ -23,9 +23,10 @@ let currentUser = null;
 // ---------------------------------------------------------
 
 const MENU = [
-  { name: "홈", url: "/index.html" },
-  { name: "게시판", url: "/pages/board.html" },
-  { name: "내 정보", url: "/pages/mypage.html" },
+{ name: "홈", url: "/index.html" },
+{ name: "오늘의 시장", url: "/pages/market.html" },
+{ name: "종목 토론", url: "/pages/board.html" },
+{ name: "내 정보", url: "/pages/mypage.html" },
 ];
 
 function renderNav() {
