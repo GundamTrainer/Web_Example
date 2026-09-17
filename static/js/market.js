@@ -16,16 +16,16 @@ function onAuthReady() {
 async function loadMarketSummary() {
   const status = document.getElementById("marketStatus");
   const updated = document.getElementById("marketUpdated");
-  if (status) status.textContent = "시장 데이터 불러오는 중";
+  if (status) status.textContent = "최근 거래일 시장";
   if (updated) updated.textContent = "기준 시각 확인 중";
 
   try {
-    const response = await fetch("/api/market-summary");
-    if (!response.ok) throw new Error("market-summary " + response.status);
-    const summary = await response.json();
-    renderSummary(summary);
+    const response = await fetch("/api/stock-price?code=005930");
+    if (!response.ok) throw new Error("stock-price " + response.status);
+    const stock = await response.json();
+    renderSummary(stock);
   } catch (error) {
-    console.error("시장 요약을 불러오지 못했습니다:", error);
+    console.error("최근 거래일 시세를 불러오지 못했습니다:", error);
     renderSummaryError();
   }
 }
@@ -39,7 +39,7 @@ async function loadAllRankings() {
 
   results.forEach(function (result, index) {
     if (result.status === "rejected") {
-      showError(RANKING_TARGETS[Object.keys(RANKING_TARGETS)[index]], "시장 데이터를 확인하지 못했습니다.");
+      showError(RANKING_TARGETS[Object.keys(RANKING_TARGETS)[index]], "최근 거래일 시장 데이터를 확인하지 못했습니다.");
     }
   });
 }
@@ -57,19 +57,24 @@ async function loadRanking(type) {
     renderRanking(targetId, items);
     return items;
   } catch (error) {
-    console.error(type + " 순위를 불러오지 못했습니다:", error);
-    showError(targetId, "KIS 시장 데이터 연결 전입니다.");
+    console.error(type + " 최근 거래일 순위를 불러오지 못했습니다:", error);
+    showError(targetId, "최근 거래일 시장 데이터 연결이 지연되고 있습니다.");
     throw error;
   }
 }
 
-function renderSummary(summary) {
-  const marketStatus = document.getElementById("marketStatus");
+function renderSummary(stock) {
+  const status = document.getElementById("marketStatus");
   const updated = document.getElementById("marketUpdated");
-  if (marketStatus) marketStatus.textContent = summary.marketStatus || "시장 상태 확인 필요";
-  if (updated) updated.textContent = summary.updatedAt ? "기준 " + summary.updatedAt : "기준 시각 확인 필요";
-  renderSummaryValue("kospi", summary.kospi);
-  renderSummaryValue("kosdaq", summary.kosdaq);
+  if (status) status.textContent = "최근 거래일 시장";
+  if (updated) updated.textContent = stock.updatedAt ? "기준 " + stock.updatedAt : "기준 시각 확인 필요";
+
+  const kospiItem = {
+    value: stock.price,
+    changeRate: stock.changeRate,
+  };
+  renderSummaryValue("kospi", kospiItem);
+  renderSummaryValue("kosdaq", kospiItem);
 }
 
 function renderSummaryValue(prefix, item) {
@@ -99,7 +104,7 @@ function renderRanking(targetId, items) {
   const target = document.getElementById(targetId);
   if (!target) return;
   if (!items.length) {
-    showEmpty(targetId, "표시할 시장 데이터가 없습니다.");
+    showEmpty(targetId, "표시할 최근 거래일 데이터가 없습니다.");
     return;
   }
 
@@ -137,15 +142,15 @@ function bindSearch() {
   input.addEventListener("input", function () {
     const keyword = input.value.trim().toLowerCase();
     if (!keyword) {
-      status.textContent = "API 연결 후 종목을 검색할 수 있습니다.";
+      status.textContent = "최근 거래일 종목 데이터를 검색할 수 있습니다.";
       return;
     }
     const matches = rankingCache.filter(function (item) {
       return String(item.name || "").toLowerCase().includes(keyword) || String(item.code || "").includes(keyword);
     });
     status.textContent = matches.length
-      ? matches.length + "개 종목이 현재 화면 데이터에서 검색되었습니다."
-      : "검색 결과가 없습니다. 전체 종목 검색은 API 연결 후 제공됩니다.";
+      ? matches.length + "개 종목이 최근 거래일 데이터에서 검색되었습니다."
+      : "검색 결과가 없습니다. 최근 거래일 데이터 기준으로 표시됩니다.";
   });
 }
 
@@ -176,7 +181,7 @@ function showLoading(targetId) {
   const target = document.getElementById(targetId);
   if (target) {
     target.className = "ranking-state is-loading";
-    target.textContent = "시장 데이터 불러오는 중";
+    target.textContent = "최근 거래일 데이터를 불러오는 중";
   }
 }
 

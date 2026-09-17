@@ -22,7 +22,7 @@
     <section class="market-summary-grid" aria-label="시장 요약">
       <article class="market-summary-card"><span>KOSPI</span><strong id="kospiValue">-</strong><small id="kospiChange">데이터 연결 대기</small></article>
       <article class="market-summary-card"><span>KOSDAQ</span><strong id="kosdaqValue">-</strong><small id="kosdaqChange">데이터 연결 대기</small></article>
-      <article class="market-summary-card summary-note"><span>DATA SOURCE</span><strong>KIS Open API</strong><small>서버 연결 후 표시됩니다.</small></article>
+      <article class="market-summary-card summary-note"><span>DATA SOURCE</span><strong>Data.go.kr 공공 API</strong><small>공공데이터 기반 시장 정보</small></article>
     </section>
 
     <section class="market-toolbar" aria-label="종목 검색">
@@ -37,7 +37,7 @@
       <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">ACTIVITY</span><h2>거래량 TOP 10</h2></div><span class="data-badge data-badge-blue">VOLUME</span></div><div id="volumeRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
       <article class="ranking-table-panel"><div class="panel-heading"><div><span class="kicker">ACTIVITY</span><h2>거래대금 TOP 10</h2></div><span class="data-badge data-badge-blue">VALUE</span></div><div id="valueRanking" class="ranking-state" role="status">시장 데이터 불러오는 중</div></article>
     </section>
-    <p class="data-disclaimer">표시할 실제 시장 데이터가 없으면 임의의 종목명과 가격을 표시하지 않습니다. 데이터는 KIS API 연결 후 제공됩니다.</p>
+    <p class="data-disclaimer">표시할 실제 시장 데이터가 없으면 임의의 종목명과 가격을 표시하지 않습니다. 데이터는 공공데이터포털 API 기준으로 제공됩니다.</p>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

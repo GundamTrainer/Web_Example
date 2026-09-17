@@ -41,6 +41,23 @@ my-project/
 `.env.local` 은 깃에 안 올라가므로 **Vercel에는 따로 등록해야 합니다.**
 Settings → Environment Variables 에 넣고 **Redeploy** 까지 해야 반영됩니다.
 
+## 실제 실행 방법
+
+이 프로젝트의 `/api/*` 경로는 정적 파일 서버로는 동작하지 않습니다.
+브라우저에서 직접 `index.html` 을 열면 `/api/stock-price`, `/api/stock-rankings` 같은 서버 엔드포인트가 존재하지 않아
+"시장 데이터를 확인하지 못했습니다" 상태가 계속 뜹니다.
+
+아래 명령으로 서버를 실행해야 합니다:
+
+```bash
+cd "C:/Users/USER/Desktop/GundTR/Web_Example"
+vercel dev
+```
+
+또는 배포 환경에서 Vercel에 올려야 `/api` 경로가 정상 작동합니다.
+
+> 참고: `python -m http.server` 는 정적 페이지만 제공하므로 API 호출은 동작하지 않습니다.
+
 Supabase 키를 안 숨기는 건 실수가 아닙니다. 공개를 전제로 만들어진 키이고,
 권한은 DB의 RLS 정책이 따로 막습니다.
 
